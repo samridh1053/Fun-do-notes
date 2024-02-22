@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto";
+}
+
+.container {
+    display: flex;
+  max-width: 50vw;
+  border: 1px solid rgb(228, 228, 228);
+  margin: auto;
+  margin-top: 4rem;
+  border-radius: 10px;
+  padding: 2rem;
+  height: 80vh;
+  
+}
+.top-content {
+  text-align: center;
+  text-align: left;
+  height: 70vh;
+  width: 28vw;
+  
+}
+.sec-content {
+
+    height: 70vh;
+    width: 18vw;
+  }
+img {
+  width: 80px;
+  margin: 10px 0;
+}
+h2 {
+  font-size: 20px;
+  font-weight:normal;
+  margin-bottom: 10px;
+}
+.heading {
+  margin-bottom: 30px;
+}
+.inputs{
+    display: flex;
+    gap: 2%;
+    margin-bottom: 5%;
+}
+#text{
+    display: block;
+    height: 8vh;
+}
+.username{
+    display: flex;
+    height: 12%;
+    
+}
+#user-text{
+    width: 97%;
+}
+.con{
+    font-size: x-small;
+    margin-bottom: 4%;
+}
+.con1{
+    color: rgb(181, 6, 181);
+    
+    font-size: small;
+}
+
+.input{
+    display: flex;
+    gap: 2%;
+    margin-bottom: 3%;
+}
+#text2{
+    display: block;
+    height: 8vh;
+}
+.lines{
+    font-size: x-small;
+    margin-bottom: 4%;
+}
+#check{
+    font-size:x-small;
+    margin-bottom: 10%;
+}
+.last{
+    display: flex;
+    gap: 55%;
+    
+    
+}
+.last1{
+    font-size: x-small;
+    color: rgb(2, 2, 114);
+    
+}
+#b1{
+    height: 150%;
+    width: 180%;
+    color: white;
+    background-color: rgb(33, 33, 245);
+}
+
+.img img{
+    display: flex;
+    margin-top: 50%;
+    margin-left: 1%;
+    height: 90%;
+    width: 98%;
+}
+
+@media only screen and (max-width: 1000px){
+  .img{
+    display: none;
+  }
+  .container{
+    width: 100%;
+  }
+}
