@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    display: flex;
+  display: flex;
   max-width: 50vw;
   border: 1px solid rgb(228, 228, 228);
   margin: auto;
@@ -23,7 +23,7 @@ body {
   text-align: center;
   text-align: left;
   height: 70vh;
-  width: 28vw;
+  width:50%;
   
 }
 .sec-content {
@@ -40,25 +40,24 @@ h2 {
   font-weight:normal;
   margin-bottom: 10px;
 }
-.heading {
-  margin-bottom: 30px;
-}
+
 .inputs{
     display: flex;
     gap: 2%;
     margin-bottom: 5%;
+    
 }
 #text{
     display: block;
     height: 8vh;
+    width: 50%;
 }
 .username{
     display: flex;
-    height: 12%;
-    
+    height: 8vh;
 }
 #user-text{
-    width: 97%;
+    width: 100%;
 }
 .con{
     font-size: x-small;
@@ -74,10 +73,12 @@ h2 {
     display: flex;
     gap: 2%;
     margin-bottom: 3%;
+    
 }
 #text2{
     display: block;
     height: 8vh;
+    width: 50%;
 }
 .lines{
     font-size: x-small;
@@ -107,10 +108,15 @@ h2 {
 
 .img img{
     display: flex;
-    margin-top: 50%;
-    margin-left: 1%;
+    margin-top: 45%;
+    margin-left: 20%;
     height: 90%;
-    width: 98%;
+    width: 80%;
+}
+
+.sec-content{
+  width: 50%;
+
 }
 
 @media only screen and (max-width: 1000px){
@@ -118,6 +124,29 @@ h2 {
     display: none;
   }
   .container{
-    width: 100%;
+    width:100vw;
+    max-width: none;
+    margin: 0;
+    margin-top: 90px;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
   }
+  .top-content {
+    height: 52vh;
+    width: 80vw;
+  }
+  #text{
+    height: 30px;
+  }
+  #text2{
+    height: 30px;
+  }
+  #b1{
+width: 15vw;
+  }
+  #user-text{
+    height: 30px;
+}
+
 }

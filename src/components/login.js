@@ -1,5 +1,13 @@
 import './login.css';
-function login(){
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+function Login(){
+    const navigate = useNavigate();
+    const handleSignUpInstead = () => {
+        navigate('/');
+    };
+
     return(
 
         <div className='container1'>
@@ -18,7 +26,7 @@ function login(){
             </div>
 
             <div className='username1'>
-            <input type="text" id="user-text2" placeholder="Password*"></input>
+            <input type="password" id="user-text2" placeholder="Password*"></input>
 
             </div>
             
@@ -27,10 +35,13 @@ function login(){
             </div>
 
             <div className="bottom">
-                <div className="last11">
+                <div className="last11" onClick={handleSignUpInstead}>
                     <p id="l1">Create account</p>
-
+                    {/* <Link to='/signup' className="link-style">
+            <p id="l1">Create account</p>
+            </Link> */}
                 </div>
+
                 <div className="last22">
                     <button id="b11">Login</button>
                 </div>
@@ -41,4 +52,4 @@ function login(){
     )
 }
 
-export default login
+export default Login
