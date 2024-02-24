@@ -1,6 +1,6 @@
 // UserServices.js
 
-const signupUser = async (userDetails) => {
+export const signupUser = async (userDetails) => {
     try {
         const response = await fetch('https://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp', {
             method: 'POST',
@@ -13,7 +13,7 @@ const signupUser = async (userDetails) => {
         if (!response.ok) {
             const errorData = await response.json();
 
-            // Check if the error is due to duplicate username or email
+            
             if (errorData.error && errorData.error.statusCode === 422) {
                 if (errorData.error.details && errorData.error.details.messages) {
                     if (errorData.error.details.messages.username && errorData.error.details.messages.username.length > 0) {
@@ -38,4 +38,4 @@ const signupUser = async (userDetails) => {
     }
 };
 
-export { signupUser };
+// export { signupUser };

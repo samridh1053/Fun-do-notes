@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './signup.css';
-import picture from './assests/l.jpg';
+import picture from '../../src/assests/l.jpg';
 import { signupUser } from '../Services/UserServices';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ function Signup() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Basic validation
+
         const validationErrors = {};
         if (!userDetails.firstName.trim()) {
             validationErrors.firstName = "First Name is required";
@@ -54,7 +54,7 @@ function Signup() {
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-            return; // Stop form submission if there are validation errors
+            return; 
         }
 
         try {
