@@ -1,0 +1,33 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    /* padding-top: 28px; */
+    box-shadow: inset 0 -1px 0 0 #dadce0;
+    z-index: 1201;
+    padding-left: 30px;
+}
+.menu{
+    padding-top: 30px;
+}
+.pic{
+    display: flex;
+    flex-direction: row;
+    padding-left: 15px;
+    padding-top: 30px;
+    
+}
+.search{
+    padding-right: 50px;
+    padding-top: 10px;
+}
+.refresh{
+    padding-right: 20px;
+    padding-top: 30px;
+}
+.list-view{
+    padding-right: 20px;
+    padding-top: 30px;
+}
+.setting{
+    padding-top: 30px;
+}

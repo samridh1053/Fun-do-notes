@@ -1,0 +1,46 @@
+/* SearchBar.css */
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-left: 80px;
+  }
+  
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  .search-input-container {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 8px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555; /* Icon color */
+  }
+  
+  .form-control {
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px;
+    padding-left: 30px; /* Adjust as needed */
+    width: 670px; /* Adjust as needed */
+    
+  }
+  
