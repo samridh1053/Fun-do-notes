@@ -1,3 +1,4 @@
+//login.js
 import './login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -37,9 +38,6 @@ function Login(){
             <div className="bottom">
                 <div className="last11" onClick={handleSignUpInstead}>
                     <p id="l1">Create account</p>
-                    {/* <Link to='/signup' className="link-style">
-            <p id="l1">Create account</p>
-            </Link> */}
                 </div>
 
                 <div className="last22">

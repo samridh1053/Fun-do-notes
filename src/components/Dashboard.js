@@ -8,10 +8,15 @@ import ViewStreamIcon from '@mui/icons-material/ViewStream';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AppsIcon from '@mui/icons-material/Apps';
 import SearchBar from "./SearchBar";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import TemporaryDrawer from "./SideBar";
 import './Dashboard.css';
 
 function Dashboard() {
+
+    const [isDrawerOpen, setDrawerOpen] = useState(false)
     const [toggleDrawer, setToggleDrawer] = useState(false)
     const navigate = useNavigate();
     return (
@@ -31,6 +36,8 @@ function Dashboard() {
                 <div className="refresh"><RefreshIcon/></div>
                 <div className="list-view"><ViewStreamIcon/></div>
                 <div className="setting"><SettingsIcon/></div>
+                <div className="apps"><AppsIcon/></div>
+                <div className="account">< AccountCircleIcon/></div>
                 
             </div>
             <SwipeableDrawer
@@ -38,16 +45,10 @@ function Dashboard() {
                 open={toggleDrawer}
                 onClose={() => setToggleDrawer(false)}
                 sx={{ zIndex: 0 }}
+
             >
-                <br />
-                <button onClick={() =>
-                    navigate("/dashboard/notes")}>Notes</button>
-                <br />
-                <button onClick={() =>
-                    navigate("/dashboard/archive")}><ArchiveIcon/></button>
-                <br />
-                <button onClick={() =>
-                    navigate("/dashboard/trash")}><DeleteIcon/></button>
+                    <TemporaryDrawer open={isDrawerOpen} toggleDrawer={setDrawerOpen} />
+
                 <br />
             </SwipeableDrawer>
             <Outlet></Outlet>

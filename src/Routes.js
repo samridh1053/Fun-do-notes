@@ -7,8 +7,6 @@ import ArchiveContainer from './components/ArchiveContainer.js'
 import TrashContainer from './components/TrashContainer.js'
 import Dashboard from './components/Dashboard.js';
 
-
-
 export const Routers = () => {
 
     const AppRoutes = createBrowserRouter([

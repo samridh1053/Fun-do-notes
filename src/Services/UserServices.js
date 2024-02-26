@@ -1,4 +1,16 @@
-// UserServices.js
+// import axios from 'axios';
+
+// // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint for login
+// const API_ENDPOINT = 'https://fundoonotes.incubation.bridgelabz.com/api/user/login';
+
+// export const loginUser = async ({ emailOrPhone, password }) => {
+//   try {
+//     const response = await axios.post(API_ENDPOINT, { emailOrPhone, password });
+//     return response;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const signupUser = async (userDetails) => {
     try {
@@ -37,5 +49,3 @@ export const signupUser = async (userDetails) => {
         throw new Error(`Error during signup: ${error.message}`);
     }
 };
-
-// export { signupUser };
