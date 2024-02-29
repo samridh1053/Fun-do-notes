@@ -1,0 +1,21 @@
+.nt-mainbox{
+    display: flex;
+    flex-direction: row;
+    height: 7vh;
+    width: 45vw;
+    align-items: center;
+    margin-left: 38vw;
+    margin-top: 5vh;
+    border: solid 1px black;
+
+}
+#tt{
+    height: 7vh;
+    width: 20vw;
+
+}
+.nt-mainbox-iconbar{
+    display: flex;
+    flex-direction: row;
+    margin-left: 24vw;
+}

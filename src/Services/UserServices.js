@@ -1,18 +1,21 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint for login
-// const API_ENDPOINT = 'https://fundoonotes.incubation.bridgelabz.com/api/user/login';
+export const loginUser = async (credentials) => {
+    try {
+        const response = await axios.post("https://fundoonotes.incubation.bridgelabz.com/api/user/login", credentials);
+        console.log(response.data);
+        const data = response.data;
+        window.localStorage.setItem("token", data.id);
+        return response;
+        // Handle successful signup (e.g., redirect to login page)
+    } catch (error) {
+        console.error(error);
+        // Handle errors (e.g., show an error message)
+    }
+};
 
-// export const loginUser = async ({ emailOrPhone, password }) => {
-//   try {
-//     const response = await axios.post(API_ENDPOINT, { emailOrPhone, password });
-//     return response;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
 
-export const signupUser = async (userDetails) => {
+const signupUser = async (userDetails) => {
     try {
         const response = await fetch('https://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp', {
             method: 'POST',
@@ -49,3 +52,5 @@ export const signupUser = async (userDetails) => {
         throw new Error(`Error during signup: ${error.message}`);
     }
 };
+
+export {signupUser};

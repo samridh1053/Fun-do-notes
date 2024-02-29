@@ -6,4 +6,6 @@ function TrashContainer(){
     )
 }
 
-export default TrashContainer
+export default TrashContainer;
+
+

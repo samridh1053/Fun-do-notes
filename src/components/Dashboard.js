@@ -1,26 +1,46 @@
-import { useState } from "react"
-import { useNavigate, Outlet } from "react-router-dom"
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import ViewStreamIcon from '@mui/icons-material/ViewStream';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AppsIcon from '@mui/icons-material/Apps';
+import React from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import ViewStreamIcon from "@mui/icons-material/ViewStream";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AppsIcon from "@mui/icons-material/Apps";
 import SearchBar from "./SearchBar";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TemporaryDrawer from "./SideBar";
+import { ActiveModuleProvider, useActiveModule } from "./ActiveModuleContext"; 
 import './Dashboard.css';
+import NoteContainer from "./NotesContainer";
+import TrashContainer from "./TrashContainer";
+import ArchiveContainer from "./ArchiveContainer";
+import { useState } from "react";
 
 function Dashboard() {
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [toggleDrawer, setToggleDrawer] = useState(false);
+  const { activeModule } = useActiveModule(); 
+  const navigate = useNavigate();
 
-    const [isDrawerOpen, setDrawerOpen] = useState(false)
-    const [toggleDrawer, setToggleDrawer] = useState(false)
-    const navigate = useNavigate();
-    return (
-        <>
+  const renderModuleContent = () => {
+    switch (activeModule) {
+      case "notes":
+        return <NoteContainer />;
+      case "archives":
+        return <ArchiveContainer />; // Import and render your Archives component
+      case "trash":
+        return <TrashContainer />; // Import and render your Trash component
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+    
             <div className="header" style={{ width: "100%", height: "80px", backgroundColor: "fff",}}>
                 <p></p>
                 <div className="menu">
@@ -40,20 +60,23 @@ function Dashboard() {
                 <div className="account">< AccountCircleIcon/></div>
                 
             </div>
-            <SwipeableDrawer
-                anchor={'left'}
-                open={toggleDrawer}
-                onClose={() => setToggleDrawer(false)}
-                sx={{ zIndex: 0 }}
-
-            >
-                    <TemporaryDrawer open={isDrawerOpen} toggleDrawer={setDrawerOpen} />
-
-                <br />
-            </SwipeableDrawer>
-            <Outlet></Outlet>
-        </>
-    )
+      {renderModuleContent()} 
+      
+      <SwipeableDrawer
+        anchor={"left"}
+        open={toggleDrawer}
+        onClose={() => setToggleDrawer(false)}
+        sx={{ zIndex: 0 }}
+      >
+        <TemporaryDrawer open={isDrawerOpen} toggleDrawer={setDrawerOpen} />
+        <br />
+      </SwipeableDrawer>
+    
+       
+      <Outlet />
+      
+    </>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
