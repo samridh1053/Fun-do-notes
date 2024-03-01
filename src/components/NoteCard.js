@@ -37,7 +37,7 @@ export default function BasicCard(props) {
   const { noteObj } = props
   return (
     <div className='pallet'>
-    <Card sx={{Width: "240px", height:"210px" }}>
+    <Card sx={{Width: "240px", height:"150px" }}>
       <CardContent>
         <Typography variant="h6" component="div">
           {noteObj.title}

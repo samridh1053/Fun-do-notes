@@ -21,9 +21,9 @@ function NoteContainer() {
 
   return (
     <div>
-      <BasicTextFields onNoteAdded={handleNoteAdded} />
+      <BasicTextFields onNoteAdded={handleNoteAdded}  />
 
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "7px", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
+      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "7px", justifyContent: "center", alignItems: "center", overflow: "hidden",marginTop:"200px" }}>
         {noteList.length ? noteList?.map(ele => <BasicCard noteObj={ele} />) : <span>Loading....</span>}
       </div>
     </div>
