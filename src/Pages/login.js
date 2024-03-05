@@ -43,12 +43,12 @@ function Login(){
             </div>
 
             <div className='outputs'>
-            <input type="text" id="email" placeholder="Email or phone*" name ="email" onChange={handleChange}></input>
+            <input type="text" id="email5" placeholder="Email or phone*" name ="email" onChange={handleChange}></input>
 
             </div>
 
             <div className='username1'>
-            <input type="password" id="password" placeholder="Password*" name="password" onChange={handleChange}></input>
+            <input type="password" id="password5" placeholder="Password*" name="password" onChange={handleChange}></input>
 
             </div>
             

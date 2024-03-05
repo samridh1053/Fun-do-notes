@@ -66,13 +66,13 @@ function Dashboard() {
         anchor={"left"}
         open={toggleDrawer}
         onClose={() => setToggleDrawer(false)}
+        onOpen={() => setToggleDrawer(true)}
         sx={{ zIndex: 0 }}
       >
-        <TemporaryDrawer open={isDrawerOpen} toggleDrawer={setDrawerOpen} />
+        <TemporaryDrawer open={isDrawerOpen} toggleDrawer={setDrawerOpen} onOpen={() => setToggleDrawer(true)} />
         <br />
       </SwipeableDrawer>
     
-       
       <Outlet />
       
     </>

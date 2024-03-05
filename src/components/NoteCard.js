@@ -12,19 +12,33 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { archiveNotes } from '../Services/NoteServices';
 // import '../components/NoteCard.css'
 
 export default function BasicCard(props) {
+  const { noteObj,onNoteArchived  } = props; // here we have define noteArchived 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [id, setId]= React.useState("");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+  
     setAnchorEl(null);
   };
 
-  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const onArchived =(id) =>{
+    setId(id);
+    // trashNotes
+    archiveNotes({
+      "noteIdList":[id],
+      "isArchived":true
+      })
+    console.log(id);
+  }
+  
   const open2 = Boolean(anchorEl2);
   const handleClick2 = (event) => {
     setAnchorEl2(event.currentTarget);
@@ -33,8 +47,8 @@ export default function BasicCard(props) {
     setAnchorEl2(null);
   };
 
-
-  const { noteObj } = props
+// undo this if error came and delete line number 18
+  // const { noteObj } = props
   return (
     <div className='pallet'>
     <Card sx={{Width: "240px", height:"150px" }}>
@@ -50,7 +64,7 @@ export default function BasicCard(props) {
         <Button ><AddAlertIcon/></Button>
 
         <Button 
-        // sx={{display:"flex", flexDirection:"row"}}
+        // style={{display:"flex", flexDirection:"row"}}
         id="basic-button1"
         aria-controls={open2 ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -67,14 +81,19 @@ export default function BasicCard(props) {
           'aria-labelledby': 'basic-button1',
         }}
       >
-        <MenuItem onClick={handleClose2}>Profile</MenuItem>
-        <MenuItem onClick={handleClose2}>My account</MenuItem>
-        <MenuItem onClick={handleClose2}>Logout</MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#FAAFA8"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#F39F76"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#FFF8B8"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#E2F6D3"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#B4DDD3"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#D4E4ED"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#AECCDC"}}></div></MenuItem>
+        <MenuItem onClick={handleClose2}><div style={{height:"20px", width:"20px", borderRadius:"50%", backgroundColor:"#D3BFDB"}}></div></MenuItem>
       </Menu>
 
         <Button ><EditIcon/></Button>
 
-        <Button ><ArchiveIcon/></Button>
+        <Button onClick={() => onArchived(noteObj.id)}><ArchiveIcon/></Button>
 
         <Button
         id="basic-button"
@@ -94,7 +113,8 @@ export default function BasicCard(props) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Delete note</MenuItem>
+        <MenuItem onClick={()=>{noteObj.isDeleted=true;
+        console.log(noteObj.isDeleted);}}>Delete note</MenuItem>
         <MenuItem onClick={handleClose}>Add label</MenuItem>
         <MenuItem onClick={handleClose}>Add drawing</MenuItem>
         <MenuItem onClick={handleClose}>Make a copy</MenuItem>

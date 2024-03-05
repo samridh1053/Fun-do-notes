@@ -55,14 +55,14 @@ export default function BasicTextFields({ onNoteAdded }){
     // </div>
 
     <>
-    <div style={{border:"1px solid black",boxShadow:"20px", width:"40vw",position:"absolute", top:"100px", left:"420px"}}>
+    <div style={{border:"1px solid black", width:"40vw",position:"absolute", top:"100px", left:"420px"}}>
                         <div style={{ height:"12vh", width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "7px" }}>
                             <input  style={{ width: "95%", border: "none", height:"5vh" }} type="text" placeholder="Title" onChange={(e) => { noteObj.title = e.target.value }} />
                         </div>
                         <div style={{ height:"7vh",width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "7px"}}>
                             <input style={{ width: "95%", border: "none", height:"5vh" }} type="text" placeholder="Take a note..." onChange={(e) => { noteObj.description = e.target.value }} />
                         </div>
-                        <div style={{ height:"7vh",width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "30px" }}>
+                        <div style={{ height:"7vh",width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "28px" }}>
                             <NotificationsOutlinedIcon />
                             <PersonAddAltOutlinedIcon />
                             <ColorLensOutlinedIcon />
