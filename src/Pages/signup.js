@@ -11,7 +11,7 @@ function Signup() {
         email: "",
         password: "",
         confirm: "",
-        service: "none"
+        service: "advance"
     });
 
     const [errors, setErrors] = useState({});

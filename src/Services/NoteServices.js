@@ -40,6 +40,7 @@ export const addNotes = async (noteObj) => {
 export const archiveNotes = async (noteId) => { //changes noteObj to notId 40 and line no 42
     try {
         const response = await axios.post(`${baseUrl}archiveNotes`, noteId, configForNotes());
+        console.log(response);
         return response;
     } catch (error) {
         console.error(error);
@@ -60,9 +61,10 @@ export const getArchive = async () => {
 
 };
 
-export const trashNotes = async (noteObj) => {
+export const trashNotes = async (noteId) => {
     try {
-        const response = await axios.post(`${baseUrl}trashNotes`, noteObj, configForNotes())
+        const response = await axios.post(`${baseUrl}trashNotes`, noteId, configForNotes())
+        console.log(response);
         return response
     } catch (error) {
         console.error(error);
