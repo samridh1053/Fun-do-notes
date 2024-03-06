@@ -16,11 +16,9 @@ export const getNotes = async () => {
         const response = await axios.get(`${baseUrl}getNotesList`, configForNotes());
         console.log(response.data.data.data);
         return (response.data.data.data)
-        // window.localStorage.setItem(, value);
-        // Handle successful signup (e.g., redirect to login page)
+
     } catch (error) {
         console.error(error);
-        // Handle errors (e.g., show an error message)
     }
 
 };
@@ -32,12 +30,11 @@ export const addNotes = async (noteObj) => {
         return response
     }catch (error) {
         console.error(error);
-        // Handle errors (e.g., show an error message)
     }
 
 }
 
-export const archiveNotes = async (noteId) => { //changes noteObj to notId 40 and line no 42
+export const archiveNotes = async (noteId) => {
     try {
         const response = await axios.post(`${baseUrl}archiveNotes`, noteId, configForNotes());
         console.log(response);
@@ -52,11 +49,9 @@ export const getArchive = async () => {
         const response = await axios.get(`${baseUrl}getArchiveNotesList`, configForNotes());
         console.log(response.data.data.data);
         return (response.data.data.data)
-        // window.localStorage.setItem(, value);
-        // Handle successful signup (e.g., redirect to login page)
     } catch (error) {
         console.error(error);
-        // Handle errors (e.g., show an error message)
+
     }
 
 };
@@ -77,10 +72,17 @@ export const getTrash = async () => {
         const response = await axios.get(`${baseUrl}getTrashNotesList`, configForNotes());
         console.log(response.data.data.data);
         return (response.data.data.data)
-        // window.localStorage.setItem(, value);
-        // Handle successful signup (e.g., redirect to login page)
     } catch (error) {
         console.error(error);
-        // Handle errors (e.g., show an error message)
     }
+
 };
+
+export const delForever = async (noteObj) => {
+    try {
+        const response = await axios.post(`${baseUrl}deleteForeverNotes`, noteObj, configForNotes())
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}

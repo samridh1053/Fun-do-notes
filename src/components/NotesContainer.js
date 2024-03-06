@@ -13,7 +13,7 @@ function NoteContainer() {
   }
 
   const handleNoteAdded = async () => {
-    await getNote(); // Wait for getNote to complete before proceeding
+    await getNote(); 
   };
 
   const update=(noteObj)=>{
@@ -26,46 +26,38 @@ function NoteContainer() {
 
   const handleNoteArchived = async (noteObj) => {
     try {
-      // Optimistically update UI first
+  
       setNoteList((prevNoteList) =>
         prevNoteList.map((note) =>
           note.id === noteObj.id && !note.isArchived
-            ? { ...note, isArchived: true } // Assuming isArchived is a boolean property
+            ? { ...note, isArchived: true } 
             : note
         )
       );
   
-      // Perform the archive operation
       await archiveNotes(noteObj.id);
   
-      // After archiving, update the note list again
       const updatedNotes = await getNotes();
       setNoteList(updatedNotes);
     } catch (error) {
       console.error("Error archiving note:", error);
-      // Handle error and possibly revert the optimistic update
-      // For simplicity, you can reload the notes in case of an error
+
       getNote();
     }
   };
   const handleNoteDeleted = async (noteObj) => {
     try {
-      // Optimistically update UI first
+    
       setNoteList((prevNoteList) =>
         prevNoteList.filter((note) => note.id !== noteObj.id)
       );
 
-      // Perform the delete operation
-      // Assuming you have a deleteNotes function in your NoteServices
       await trashNotes(noteObj.id);
 
-      // Optionally, you can update the note list again after deletion
       const updatedNotes = await getNotes();
       setNoteList(updatedNotes);
     } catch (error) {
       console.error("Error deleting note:", error);
-      // Handle error and possibly revert the optimistic update
-      // For simplicity, you can reload the notes in case of an error
       getNote();
     }
   };

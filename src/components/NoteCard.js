@@ -8,12 +8,13 @@ import AddAlertIcon from '@mui/icons-material/AddAlert';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
+import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { archiveNotes } from '../Services/NoteServices';
-import {trashNotes} from '../Services/NoteServices'
+import {trashNotes,delForever} from '../Services/NoteServices'
 // import '../components/NoteCard.css'
 
 export default function BasicCard(props) {
@@ -33,7 +34,6 @@ export default function BasicCard(props) {
 
   const onArchived =(id) =>{
     setId(id);
-    // trashNotes
     archiveNotes({
       "noteIdList":[id],
       "isArchived":true
@@ -47,6 +47,35 @@ export default function BasicCard(props) {
     trashNotes({
       "noteIdList":[id],
       "isDeleted":true
+      })
+    onNoteDeleted(noteObj);
+    console.log(id);
+  }
+
+  const unArchived =(id) =>{
+    setId(id);
+    archiveNotes({
+      "noteIdList":[id],
+      "isArchived":false
+      })
+    onNoteArchived(noteObj);
+    console.log(id);
+  }
+
+  const unDeleted =(id) =>{
+    setId(id);
+    trashNotes({
+      "noteIdList":[id],
+      "isDeleted":false
+      })
+    onNoteDeleted(noteObj);
+    console.log(id);
+  }
+
+  const deleteForever =(id) =>{
+    setId(id);
+    delForever({
+      "noteIdList":[id],
       })
     onNoteDeleted(noteObj);
     console.log(id);
@@ -66,8 +95,7 @@ export default function BasicCard(props) {
     update(noteObj)
   };
 
-// undo this if error came and delete line number 18
-  // const { noteObj } = props
+
   return (
     <div className='pallet'>
     <Card sx={{Width: "240px", height:"150px" ,backgroundColor:noteObj.color}}>
@@ -116,6 +144,7 @@ export default function BasicCard(props) {
         <Button ><EditIcon/></Button>
 
         <Button onClick={() => onArchived(noteObj.id)}><ArchiveIcon/></Button>
+        <Button onClick={() => unArchived(noteObj.id)}><UnarchiveIcon/></Button>
 
         <Button
         id="basic-button"
@@ -136,11 +165,8 @@ export default function BasicCard(props) {
         }}
       >
         <MenuItem onClick={() => onDeleted(noteObj.id)}>Delete note</MenuItem>
-        <MenuItem onClick={handleClose}>Add label</MenuItem>
-        <MenuItem onClick={handleClose}>Add drawing</MenuItem>
-        <MenuItem onClick={handleClose}>Make a copy</MenuItem>
-        <MenuItem onClick={handleClose}>Show checkboxes</MenuItem>
-        <MenuItem onClick={handleClose}>Version history</MenuItem>
+        <MenuItem onClick={() => deleteForever(noteObj.id)}>Delete Forever</MenuItem>
+        <MenuItem onClick={() => unDeleted(noteObj.id)}>Undo Delete</MenuItem>
       </Menu>
       </CardActions>
     </Card>
