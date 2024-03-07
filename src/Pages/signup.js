@@ -22,7 +22,7 @@ function Signup() {
             ...prevDetails,
             [name]: value
         }));
-        // Clear validation error when the user types in a field
+        
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: null
@@ -30,7 +30,7 @@ function Signup() {
     };
 
 
-
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -60,12 +60,13 @@ function Signup() {
         try {
             const response = await signupUser(userDetails);
             console.log('Signup successful:', response);
+            navigate('/login');
         } catch (error) {
             console.error("Error during signup:", error);
         }
     };
 
-    const navigate = useNavigate();
+
     const handleSignInInstead = () => {
         navigate('/login');
     };
@@ -112,9 +113,9 @@ return (
             <p id="check">show password</p>
         </div>
 
-        <div className="last" onClick={handleSignInInstead}>
+        <div className="last">
             <div className="last1">
-            <p id="l1">Sign in instead</p>
+            <p id="l1" onClick={handleSignInInstead}>Sign in instead</p>
             </div>
             <div className="last2">
             <button type="submit" id="b1">Submit</button>

@@ -14,5 +14,5 @@ export const signupUser = async (userData) => {
 
         const response = await axios.post("https://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp", userData);
         console.log(response.data);
-        return response.data;
+        return response;
 };

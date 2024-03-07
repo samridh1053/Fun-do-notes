@@ -30,14 +30,20 @@ function Dashboard() {
       case "notes":
         return <NoteContainer />;
       case "archives":
-        return <ArchiveContainer />; // Import and render your Archives component
+        return <ArchiveContainer />; 
       case "trash":
-        return <TrashContainer />; // Import and render your Trash component
+        return <TrashContainer />; 
       default:
         return null;
     }
   };
 
+  const handleChange=()=>{
+    navigate('/login');
+    window.localStorage.removeItem("token")
+
+  }
+  
   return (
     <>
     
@@ -57,7 +63,7 @@ function Dashboard() {
                 <div className="list-view"><ViewStreamIcon/></div>
                 <div className="setting"><SettingsIcon/></div>
                 <div className="apps"><AppsIcon/></div>
-                <div className="account">< AccountCircleIcon/></div>
+                <div className="account" onClick={handleChange}>< AccountCircleIcon/></div>
                 
             </div>
       {renderModuleContent()} 

@@ -7,12 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Login(){
 
-    // const [emailOrPhone, setEmailOrPhone] = useState('');
-    // const [password, setPassword] = useState('');
-    
-
     const navigate = useNavigate();
-
     const [usercredentials, setCredentials] = useState({ email: "", password: "" })
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -26,7 +21,7 @@ function Login(){
         console.log(usercredentials);
         const response = loginUser(usercredentials);
         if (response) {
-            navigate("/dashboard/notes")
+            navigate("/dashboard")
         }
     };
 

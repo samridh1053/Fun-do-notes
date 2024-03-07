@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -15,10 +14,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { archiveNotes } from '../Services/NoteServices';
 import {trashNotes,delForever} from '../Services/NoteServices'
-// import '../components/NoteCard.css'
+import { List } from '@mui/material';
+
 
 export default function BasicCard(props) {
-  const { noteObj,onNoteArchived, onNoteDeleted,update } = props; // here we have define noteArchived 
+  const { noteObj,onNoteArchived, onNoteDeleted,update } = props; 
   // const {notesObj,onNoteDeleted} =props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
@@ -98,7 +98,7 @@ export default function BasicCard(props) {
 
   return (
     <div className='pallet'>
-    <Card sx={{Width: "240px", height:"150px" ,backgroundColor:noteObj.color}}>
+    <Card sx={{Width: "220px", height:"140px", backgroundColor:noteObj.color}}>
       <CardContent>
         <Typography variant="h6" component="div">
           {noteObj.title}
@@ -170,6 +170,7 @@ export default function BasicCard(props) {
       </Menu>
       </CardActions>
     </Card>
+    
     </div>
   );
 }

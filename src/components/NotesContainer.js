@@ -17,7 +17,7 @@ function NoteContainer() {
   };
 
   const update=(noteObj)=>{
-    console.log("fsgshrhbsf");
+    // console.log("hello");
     setNoteList(noteList.map((note)=>{
       if (note.id === noteObj.id) return noteObj
       return note
