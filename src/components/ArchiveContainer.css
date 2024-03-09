@@ -1,0 +1,19 @@
+.Ac{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items:center;
+    gap:10px; 
+    margin-top:10px; 
+
+}
+
+@media only screen and (max-width: 769px){
+    .Ac{
+        margin-top: 20vh;
+        gap: 40px;
+        padding-right: 80%;
+        /* margin-right: 30%; */
+        
+    }
+}

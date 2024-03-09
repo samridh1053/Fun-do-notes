@@ -1,3 +1,52 @@
+.topper{
+    
+    width:"20%";
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* position:"absolute"; */
+    /* top:"100px";
+    left:"420px"; */
+    /* background-color: violet; */
+    /* margin-left: 35%;
+    margin-right: 25%; */
+    margin-top: 2%;
+    padding-left: 300px;
+
+    
+}
+.input {
+    
+    position: relative;
+    right: 290px;
+    width: 141%;
+    height: 35px;
+    top: 10px;
+    margin-bottom: 20px;
+}
+
+.outside{
+    position: relative;
+    right: 290px;
+    width: 141%;
+    height: 35px;
+    top: 10px;
+    margin-bottom: 12px;
+
+}
+
+.rod{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+    right: 155px;
+    width: 100%;
+    height: 35px;
+    top: 10px;
+}
+
 .nt-mainbox{
     display: flex;
     flex-direction: row;
@@ -19,3 +68,27 @@
     flex-direction: row;
     margin-left: 24vw;
 }
+
+
+@media only screen and (max-width: 700px){
+    .topper{
+        margin-left: 50%;
+        height: 250px;
+        
+    }
+    .input {
+        width: 290vw;
+        height: 65px;
+    }
+    .outside{
+        width: 290vw;
+        height: 65px;
+    
+    }
+    .rod{
+        right: 285px;
+    
+    }
+}
+
+

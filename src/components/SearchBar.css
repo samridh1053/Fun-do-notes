@@ -43,4 +43,11 @@
     width: 670px; /* Adjust as needed */
     
   }
+
+  
+@media only screen and (max-width: 769px){
+  .form-control{
+    width: 1320px;
+  }
+}
   

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BasicCard from "./NoteCard";
 import { getArchive } from "../Services/NoteServices";
+import './ArchiveContainer.css'
 
 
 function ArchiveContainer() {
@@ -34,7 +35,7 @@ function ArchiveContainer() {
   };
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"center", alignItems:"center", gap:"10px", marginTop:"10px" }}>
+    <div className="Ac">
       {noteList?.length ? (
         noteList
           .filter((ele) => !ele.isDeleted)

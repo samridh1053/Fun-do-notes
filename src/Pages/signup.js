@@ -97,7 +97,7 @@ return (
             <label>Use my current email instead</label>
         </div>
 
-        <div className='input'>
+        <div className='input50'>
                         <input type="password" id="text2" placeholder="Password*" name="password" onChange={handleChange} value={userDetails.password}></input>
                         {errors.password && <div className="error">{errors.password}</div>}
                         <input type="password" id="text2" placeholder="Confirm*" name="confirm" onChange={handleChange} value={userDetails.confirm}></input>

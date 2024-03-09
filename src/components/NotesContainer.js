@@ -3,8 +3,9 @@ import BasicTextFields from "../components/CreateNote";
 import { archiveNotes, trashNotes } from "../Services/NoteServices";
 import { useEffect, useState } from "react";
 import { getNotes } from "../Services/NoteServices";
+import "./NoteContainer.css";
 
-function NoteContainer() {
+function NoteContainer({ isGridView }) {
   const [noteList, setNoteList] = useState([]);
 
   async function getNote() {
@@ -13,30 +14,30 @@ function NoteContainer() {
   }
 
   const handleNoteAdded = async () => {
-    await getNote(); 
+    await getNote();
   };
 
-  const update=(noteObj)=>{
-    // console.log("hello");
-    setNoteList(noteList.map((note)=>{
-      if (note.id === noteObj.id) return noteObj
-      return note
-    }))
-  }
+  const update = (noteObj) => {
+    setNoteList(
+      noteList.map((note) => {
+        if (note.id === noteObj.id) return noteObj;
+        return note;
+      })
+    );
+  };
 
   const handleNoteArchived = async (noteObj) => {
     try {
-  
       setNoteList((prevNoteList) =>
         prevNoteList.map((note) =>
           note.id === noteObj.id && !note.isArchived
-            ? { ...note, isArchived: true } 
+            ? { ...note, isArchived: true }
             : note
         )
       );
-  
+
       await archiveNotes(noteObj.id);
-  
+
       const updatedNotes = await getNotes();
       setNoteList(updatedNotes);
     } catch (error) {
@@ -47,7 +48,6 @@ function NoteContainer() {
   };
   const handleNoteDeleted = async (noteObj) => {
     try {
-    
       setNoteList((prevNoteList) =>
         prevNoteList.filter((note) => note.id !== noteObj.id)
       );
@@ -68,22 +68,80 @@ function NoteContainer() {
 
   return (
     <div>
-      <BasicTextFields onNoteAdded={handleNoteAdded} />
+      {isGridView ? (
+        <div
+          className="responsive"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BasicTextFields onNoteAdded={handleNoteAdded} />
+          <div className="noteSet">
+            {noteList?.length ? (
+              (() => {
+                const filteredNotes = noteList?.filter(
+                  (ele) => !ele.isArchived && !ele.isDeleted
+                );
+                console.log("Filtered Notes:", filteredNotes);
 
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "7px", justifyContent: "center", alignItems: "center", overflow: "hidden", marginTop: "200px" }}>
-        {noteList?.length ? (
-          (() => {
-            const filteredNotes = noteList?.filter(ele => !ele.isArchived && !ele.isDeleted);
-            console.log('Filtered Notes:', filteredNotes);
+                return filteredNotes.map((ele) => (
+                  <BasicCard
+                    key={ele.id}
+                    noteObj={ele}
+                    onNoteArchived={handleNoteArchived}
+                    onNoteDeleted={handleNoteDeleted}
+                    update={update}
+                    isGridView={isGridView}
+                  />
+                ));
+              })()
+            ) : (
+              <span>Loading....</span>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div
+          className="responsive"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BasicTextFields onNoteAdded={handleNoteAdded} />
+          <div className="noteSet2">
+            {noteList?.length ? (
+              (() => {
+                const filteredNotes = noteList?.filter(
+                  (ele) => !ele.isArchived && !ele.isDeleted
+                );
+                console.log("Filtered Notes:", filteredNotes);
 
-            return filteredNotes.map(ele => (
-                <BasicCard key={ele.id} noteObj={ele} onNoteArchived={handleNoteArchived} onNoteDeleted={handleNoteDeleted} update={update} />
-              ));
-          })()
-        ) : (
-          <span>Loading....</span>
-        )}
-      </div>
+                return filteredNotes.map((ele) => (
+                  <BasicCard
+                    key={ele.id}
+                    noteObj={ele}
+                    onNoteArchived={handleNoteArchived}
+                    onNoteDeleted={handleNoteDeleted}
+                    update={update}
+                    isGridView={isGridView}
+                  />
+                ));
+              })()
+            ) : (
+              <span>Loading....</span>
+            )}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

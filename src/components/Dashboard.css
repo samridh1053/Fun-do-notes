@@ -5,6 +5,7 @@
     box-shadow: inset 0 -1px 0 0 #dadce0;
     z-index: 1201;
     padding-left: 30px;
+    width: 100%;
 }
 .menu{
     padding-top: 30px;
@@ -24,7 +25,7 @@
     padding-right: 20px;
     padding-top: 30px;
 }
-.list-view{
+.grid-view{
     padding-right: 20px;
     padding-top: 30px;
 }
@@ -38,5 +39,39 @@
 }
 .account{
     padding-top: 30px;padding-left: 20px;
+
+}
+@media only screen and (max-width: 769px){
+    .root{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        /* background-color: aqua; */
+        
+    
+    }
+    .pic h2{
+        display: none;
+    }
+    .search{
+        /* margin-left: 380px; */
+        padding-top: 25px;
+        
+    }
+    .header{
+        width: 60%;
+    }
+    .refresh{
+        display: none;
+    }
+    .list-view{
+        display: none;
+    }
+    .setting{
+        display: none;
+    }
+    .apps{
+        display: none;
+    }
 
 }

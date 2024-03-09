@@ -14,8 +14,13 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import { addNotes } from "../Services/NoteServices";
 import Button from "@mui/material/Button";
 import { useState } from 'react';
+import './CreateNote.css'
 // import '../components/CreateNote.css'
+
+
 export default function BasicTextFields({ onNoteAdded }){
+
+    
     const noteObj = {
 
         "title": "",
@@ -30,6 +35,10 @@ export default function BasicTextFields({ onNoteAdded }){
 
         onNoteAdded(); // Notify the parent component that a new note has been added
       };
+
+   
+   
+
   return(
     // <div className='nt-mainbox'>
     //   <div className='nt-text'>
@@ -55,17 +64,17 @@ export default function BasicTextFields({ onNoteAdded }){
     // </div>
 
     <>
-    <div style={{border:"1px solid black", width:"40vw",position:"absolute", top:"100px", left:"420px"}}>
-                        <div style={{ height:"12vh", width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "7px" }}>
-                            <input  style={{ width: "95%", border: "none", height:"5vh" }} type="text" placeholder="Title" onChange={(e) => { noteObj.title = e.target.value }} />
+    <div className='topper'>
+                        <div >
+                            <input class="input" type="text" placeholder="Title" style={{ border: '0px solid #ccc', outline: 'none' }} onChange={(e) => { noteObj.title = e.target.value }} />
                         </div>
-                        <div style={{ height:"7vh",width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "7px"}}>
-                            <input style={{ width: "95%", border: "none", height:"5vh" }} type="text" placeholder="Take a note..." onChange={(e) => { noteObj.description = e.target.value }} />
+                        <div>
+                            <input class="outside" type="text" placeholder="Take a note..." style={{ border: '0px solid #ccc', outline: 'none' }} onChange={(e) => { noteObj.description = e.target.value }} />
                         </div>
-                        <div style={{ height:"7vh",width: "40vw", display: "flex", justifyContent: "center", alignItems: "center", gap: "28px" }}>
+                        <div className='rod' >
                             <NotificationsOutlinedIcon />
                             <PersonAddAltOutlinedIcon />
-                            <ColorLensOutlinedIcon />
+                            <ColorLensOutlinedIcon  />
                             <ImageOutlinedIcon />
                             <ArchiveOutlinedIcon />
                             <MoreVertOutlinedIcon />
@@ -75,5 +84,5 @@ export default function BasicTextFields({ onNoteAdded }){
                             </div>
                             </div>
                             </>
-  )
+)
 }
