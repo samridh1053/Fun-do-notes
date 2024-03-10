@@ -8,6 +8,15 @@
 
 }
 
+.noteSet {
+    /* width: 100%; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 @media only screen and (max-width: 769px){
     .Ac{
         margin-top: 20vh;

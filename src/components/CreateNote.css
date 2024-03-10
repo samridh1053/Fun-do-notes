@@ -72,16 +72,16 @@
 
 @media only screen and (max-width: 700px){
     .topper{
-        margin-left: 50%;
+        margin-left: 20%;
         height: 250px;
         
     }
     .input {
-        width: 290vw;
+        width: 230vw;
         height: 65px;
     }
     .outside{
-        width: 290vw;
+        width: 230vw;
         height: 65px;
     
     }

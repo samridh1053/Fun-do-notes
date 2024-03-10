@@ -46,7 +46,7 @@
 
     @media only screen and (max-width: 700px){
     .responsive{ 
-        width : 96vh;
+        width : 35vh;
         margin-top: 100px;
         display: flex;
         flex-direction: row;

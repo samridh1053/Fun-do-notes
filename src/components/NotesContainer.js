@@ -84,13 +84,12 @@ function NoteContainer({ isGridView }) {
             {noteList?.length ? (
               (() => {
                 const filteredNotes = noteList?.filter(
-                  (ele) => !ele.isArchived && !ele.isDeleted
+                  (ele) => !ele?.isArchived && !ele?.isDeleted
                 );
                 console.log("Filtered Notes:", filteredNotes);
-
                 return filteredNotes.map((ele) => (
                   <BasicCard
-                    key={ele.id}
+                    key={ele?.id}
                     noteObj={ele}
                     onNoteArchived={handleNoteArchived}
                     onNoteDeleted={handleNoteDeleted}
@@ -141,7 +140,6 @@ function NoteContainer({ isGridView }) {
           </div>
         </div>
       )}
-
     </div>
   );
 }

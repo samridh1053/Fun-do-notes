@@ -8,9 +8,9 @@ const NavList = () => {
   const { setModule } = useActiveModule();
 
   const navList = [
-    { id: 1, name: 'Notes', icon: <Lightbulb />},
-    { id: 2, name: 'Archives', icon: <Archive />},
-    { id: 3, name: 'Trash', icon: <Delete />},
+    { id: 1, name: 'Notes', icon: <Lightbulb />, href:"/dashboard"},
+    { id: 2, name: 'Archives', icon: <Archive />, href:"/archive"},
+    { id: 3, name: 'Trash', icon: <Delete />,  href:"/trash"},
   ];
 
   const handleModuleChange = (module) => {
@@ -21,7 +21,7 @@ const NavList = () => {
     <List>
       {navList.map((list) => (
         <ListItem button key={list.id} onClick={() => handleModuleChange(list.name.toLowerCase())}>
-          <Link style={{ textDecoration: 'none', display: 'flex', color: 'inherit' }}>
+          <Link style={{ textDecoration: 'none', display: 'flex', color: 'inherit' }} to={list.href}>
             <ListItemIcon style={{ alignItems: 'center' }}>
               {list.icon}
             </ListItemIcon>

@@ -1,6 +1,3 @@
-import React from "react";
-import { useNavigate, Outlet } from "react-router-dom";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -13,36 +10,20 @@ import AppsIcon from "@mui/icons-material/Apps";
 import SearchBar from "./SearchBar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TemporaryDrawer from "./SideBar";
-import { ActiveModuleProvider, useActiveModule } from "./ActiveModuleContext";
-import "./Dashboard.css";
-import NoteContainer from "./NotesContainer";
-import TrashContainer from "./TrashContainer";
-import ArchiveContainer from "./ArchiveContainer";
-import { NavBar } from "./NavBar";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { useState } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import { ActiveModuleProvider, useActiveModule } from "./ActiveModuleContext";
+import React from 'react'
 
-function Dashboard() {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [gridView, setGridView] = useState(true);
+export const NavBar = ({gridView, setGridView}) => {
+
+    const [isDrawerOpen, setDrawerOpen] = useState(false);
+  // const [gridView, setGridView] = useState(true);
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { activeModule } = useActiveModule();
   const navigate = useNavigate();
-  // const [isGridView, setGridView] = useState(true);
-
-  const renderModuleContent = () => {
-    switch (activeModule) {
-      case "notes":
-        return <NoteContainer isGridView={gridView} />;
-      case "archives":
-        return <ArchiveContainer />;
-      case "trash":
-        return <TrashContainer />;
-      default:
-        return null;
-    }
-  };
-
-  const handleChange = () => {
+    const handleChange = () => {
     navigate("/login");
     window.localStorage.removeItem("token");
   };
@@ -52,12 +33,8 @@ function Dashboard() {
   };
 
   return (
-    <div className="root">
-      {/* <div className="list-view" onClick={toggleGridView}>
-        {isGridView ? <ViewStreamIcon /> : <AppsIcon />}
-      </div> */}
-
-      {/* <div
+<div className="root">
+    <div
         className="header"
         style={{ height: "80px", backgroundColor: "fff" }}
       >
@@ -99,12 +76,23 @@ function Dashboard() {
         <div className="account" onClick={handleChange}>
           <AccountCircleIcon />
         </div>
-      </div> */}
-      <NavBar gridView={gridView} setGridView={setGridView} />
-      <NoteContainer isGridView={gridView} />
-      {/* {renderModuleContent()} */}
-    </div>
-  );
-}
+      </div>
+      <SwipeableDrawer
+        anchor={"left"}
+        open={toggleDrawer}
+        onClose={() => setToggleDrawer(false)}
+        onOpen={() => setToggleDrawer(true)}
+        sx={{ zIndex: 0 }}
+      >
+        <TemporaryDrawer
+          open={isDrawerOpen}
+          toggleDrawer={setDrawerOpen}
+          onOpen={() => setToggleDrawer(true)}
+        />
+        <br />
+      </SwipeableDrawer>
 
-export default Dashboard;
+      <Outlet />
+      </div>
+  )
+}

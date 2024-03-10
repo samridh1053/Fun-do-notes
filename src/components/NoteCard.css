@@ -1,55 +1,81 @@
-.CardActions{
+.CardActions {
+  display: flex;
+  gap: 10px;
+  padding-left: 20px;
+  /* justify-content: space-around; */
+  /* margin-left: 20px; */
+  /* margin-right: 20px; */
+}
+.button {
+  /* display: flex; */
+  /* margin: 0; */
+  /* padding: 0; */
+}
+
+.pallet{
+display: flex;
+}
+
+.pal {
+  width: 250px;
+  height: 140px;
+  border: solid 0.2px black;
+  border-radius: 10px;
+}
+
+.pal2 {
+  width: 100%;
+  height: 140px;
+  border: solid 0.2px black;
+  border-radius: 10px;
+}
+
+.colorPalContainer{
     display: flex;
-    gap: 10px;
-    padding-left: 20px;
-    /* justify-content: space-around; */
-    /* margin-left: 20px; */
-    /* margin-right: 20px; */
-}
-.button{
-    /* display: flex; */
-    /* margin: 0; */
-    /* padding: 0; */
-}
-.pal{
-    width: 250px;
-    height:140px;
-    border: solid 0.2px black;
-    border-radius: 10px;
-
+    min-width: fit-content;
 }
 
-.pal2{
-    width: 100%;
-    height:140px;
-    border: solid 0.2px black;
-    border-radius: 10px;
-
+.colorPal {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
-#basic-button1{
-    right: 50px;
+.incontainer{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
-#basic-button0{
-    right: 20px;
-}
-#basic-button3{
-    right: 80px;
-}
-#basic-button4{
-    right: 110px;
-}
-#basic-button5{
-    right: 110px;
-}
-#basic-button{
-    right: 140px;
-}
-@media only screen and (max-width: 769px){
-    .pal{
-        margin-left: 25vh;
-        width:165vh;
-        height: 200px;
-    }
 
+#basic-button1 {
+  right: 50px;
+}
+#basic-button0 {
+  right: 20px;
+}
+#basic-button3 {
+  right: 80px;
+}
+#basic-button4 {
+  right: 110px;
+}
+#basic-button5 {
+  right: 110px;
+}
+#basic-button {
+  right: 140px;
+}
+@media only screen and (max-width: 769px) {
+  .pal {
+    margin-left: 6vh;
+    width: 165vh;
+    height: 200px;
+  }
+  .pal2 {
+    margin-left: 175vh;
+    width: 165vh;
+    height: 200px;
+  }
 }
