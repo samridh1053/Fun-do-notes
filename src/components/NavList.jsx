@@ -9,8 +9,8 @@ const NavList = () => {
 
   const navList = [
     { id: 1, name: 'Notes', icon: <Lightbulb />, href:"/dashboard"},
-    { id: 2, name: 'Archives', icon: <Archive />, href:"/archive"},
-    { id: 3, name: 'Trash', icon: <Delete />,  href:"/trash"},
+    { id: 2, name: 'Archives', icon: <Archive />, href:"/dashboard/archive"},
+    { id: 3, name: 'Trash', icon: <Delete />,  href:"/dashboard/trash"},
   ];
 
   const handleModuleChange = (module) => {

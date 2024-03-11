@@ -22,11 +22,11 @@ export const Routers = () => {
       element: <Dashboard />,
     },
     {
-      path: "/archive",
+      path: "/dashboard/archive",
       element: <ArchiveContainer />,
     },
     {
-      path: "/trash",
+      path: "/dashboard/trash",
       element: <TrashContainer />,
     },
   ]);

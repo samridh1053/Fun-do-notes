@@ -47,7 +47,6 @@ export default function BasicCard(props) {
       isDeleted: true,
     });
     onNoteDeleted(noteObj);
-    // console.log(id);
   };
 
   const unArchived = (id) => {
@@ -58,7 +57,6 @@ export default function BasicCard(props) {
     });
     onNoteArchived(noteObj);
     window.location.reload();
-    // console.log(id);
   };
 
   const unDeleted = (id) => {
@@ -69,7 +67,6 @@ export default function BasicCard(props) {
     });
     onNoteDeleted(noteObj);
     window.location.reload();
-    // console.log(id);
   };
 
   const deleteForever = (id) => {
@@ -79,7 +76,6 @@ export default function BasicCard(props) {
     });
     onNoteDeleted(noteObj);
     window.location.reload();
-    // console.log(id);
   };
 
   const open2 = Boolean(anchorEl2);
