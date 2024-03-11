@@ -44,6 +44,7 @@ function ArchiveContainer() {
                   key={ele.id}
                   noteObj={ele}
                   onNoteArchived={handleNoteArchived}
+                  isGridView={true}
                 />
               ))
           ) : (

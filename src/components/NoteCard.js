@@ -12,15 +12,13 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { archiveNotes } from "../Services/NoteServices";
+import { archiveNotes, updateColor } from "../Services/NoteServices";
 import { trashNotes, delForever } from "../Services/NoteServices";
 import { List } from "@mui/material";
 import "./NoteCard.css";
 
 export default function BasicCard(props) {
   const { noteObj, onNoteArchived, onNoteDeleted, update, isGridView } = props;
-  // console.log(noteObj);
-  // const {notesObj,onNoteDeleted} =props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
   const [id, setId] = React.useState("");
@@ -95,18 +93,173 @@ export default function BasicCard(props) {
   const handleClose3 = (action) => {
     noteObj.color = `${action}`;
     update(noteObj);
+    updateColor({
+      noteIdList: [noteObj.id],
+      color: action,
+    });
   };
 
   return (
-    <div className="pallet">
+    <>
       {isGridView ? (
-        <Card class="pal" style={{ backgroundColor: `${noteObj?.color}` }}>
-          <div class="incontainer" style={{}}>
+        <div className="pallet">
+          <Card class="pal" style={{ backgroundColor: `${noteObj?.color}` }}>
+            <div class="incontainer" style={{}}>
+              <CardContent>
+                <Typography variant="h6" component="div">
+                  {noteObj?.title}
+                </Typography>
+                <Typography>{noteObj?.description}</Typography>
+              </CardContent>
+              <CardActions class="CardActions">
+                <Button id="basic-button0">
+                  <AddAlertIcon />
+                </Button>
+
+                <Button
+                  id="basic-button1"
+                  aria-controls={open2 ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open2 ? "true" : undefined}
+                  onClick={handleClick2}
+                >
+                  <ColorLensIcon />
+                </Button>
+                <Menu
+                  id="basic-menu2"
+                  anchorEl={anchorEl2}
+                  open={open2}
+                  onClose={handleClose2}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button1",
+                  }}
+                >
+                  <MenuItem onClick={handleClose2}>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#FAAFA8",
+                      }}
+                      onClick={() => handleClose3("#FAAFA8")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#F39F76",
+                      }}
+                      onClick={() => handleClose3("#F39F76")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#FFF8B8",
+                      }}
+                      onClick={() => handleClose3("#FFF8B8")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#E2F6D3",
+                      }}
+                      onClick={() => handleClose3("#E2F6D3")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#B4DDD3",
+                      }}
+                      onClick={() => handleClose3("#B4DDD3")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#D4E4ED",
+                      }}
+                      onClick={() => handleClose3("#D4E4ED")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#AECCDC",
+                      }}
+                      onClick={() => handleClose3("#AECCDC")}
+                    ></div>
+                    <div
+                      class="colorPal"
+                      style={{
+                        backgroundColor: "#D3BFDB",
+                      }}
+                      onClick={() => handleClose3("#D3BFDB")}
+                    ></div>
+                  </MenuItem>
+                </Menu>
+
+                <Button id="basic-button3">
+                  <EditIcon />
+                </Button>
+
+                {/* {console.log(noteObj)} */}
+                {noteObj?.isArchived ? (
+                  <Button
+                    id="basic-button5"
+                    onClick={() => unArchived(noteObj.id)}
+                  >
+                    <UnarchiveIcon />
+                  </Button>
+                ) : (
+                  <Button
+                    id="basic-button4"
+                    onClick={() => onArchived(noteObj.id)}
+                  >
+                    <ArchiveIcon />
+                  </Button>
+                )}
+
+                <Button
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                >
+                  <MoreVertIcon />
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  {!noteObj?.isDeleted ? (
+                    <MenuItem onClick={() => onDeleted(noteObj.id)}>
+                      Delete note
+                    </MenuItem>
+                  ) : (
+                    <>
+                      <MenuItem onClick={() => deleteForever(noteObj.id)}>
+                        Delete Forever
+                      </MenuItem>
+                      <MenuItem onClick={() => unDeleted(noteObj.id)}>
+                        Undo Delete
+                      </MenuItem>
+                    </>
+                  )}
+                </Menu>
+              </CardActions>
+            </div>
+          </Card>
+        </div>
+      ) : (
+        <div className="pallet2">
+          <Card class="pal2" sx={{ backgroundColor: noteObj.color }}>
             <CardContent>
               <Typography variant="h6" component="div">
-                {noteObj?.title}
+                {noteObj.title}
               </Typography>
-              <Typography>{noteObj?.description}</Typography>
+              <Typography>{noteObj.description}</Typography>
             </CardContent>
             <CardActions class="CardActions">
               <Button id="basic-button0">
@@ -133,57 +286,73 @@ export default function BasicCard(props) {
               >
                 <MenuItem onClick={handleClose2}>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#FAAFA8",
                     }}
                     onClick={() => handleClose3("#FAAFA8")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#F39F76",
                     }}
                     onClick={() => handleClose3("#F39F76")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#FFF8B8",
                     }}
                     onClick={() => handleClose3("#FFF8B8")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#E2F6D3",
                     }}
                     onClick={() => handleClose3("#E2F6D3")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#B4DDD3",
                     }}
                     onClick={() => handleClose3("#B4DDD3")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#D4E4ED",
                     }}
                     onClick={() => handleClose3("#D4E4ED")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#AECCDC",
                     }}
                     onClick={() => handleClose3("#AECCDC")}
                   ></div>
                   <div
-                    class="colorPal"
                     style={{
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
                       backgroundColor: "#D3BFDB",
                     }}
                     onClick={() => handleClose3("#D3BFDB")}
@@ -195,7 +364,7 @@ export default function BasicCard(props) {
                 <EditIcon />
               </Button>
 
-              {/* {console.log(noteObj)} */}
+              {console.log(noteObj)}
               {noteObj?.isArchived ? (
                 <Button
                   id="basic-button5"
@@ -244,192 +413,11 @@ export default function BasicCard(props) {
                     </MenuItem>
                   </>
                 )}
-                {/* <MenuItem onClick={() => onDeleted(noteObj.id)}>
-              Delete note
-            </MenuItem>
-            <MenuItem onClick={() => deleteForever(noteObj.id)}>
-              Delete Forever
-            </MenuItem>
-            <MenuItem onClick={() => unDeleted(noteObj.id)}>
-              Undo Delete
-            </MenuItem> */}
               </Menu>
             </CardActions>
-          </div>
-        </Card>
-      ) : (
-        <Card class="pal2" sx={{ backgroundColor: noteObj.color }}>
-          <CardContent>
-            <Typography variant="h6" component="div">
-              {noteObj.title}
-            </Typography>
-            <Typography>{noteObj.description}</Typography>
-          </CardContent>
-          <CardActions class="CardActions">
-            <Button id="basic-button0">
-              <AddAlertIcon />
-            </Button>
-
-            <Button
-              id="basic-button1"
-              aria-controls={open2 ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open2 ? "true" : undefined}
-              onClick={handleClick2}
-            >
-              <ColorLensIcon />
-            </Button>
-            <Menu
-              id="basic-menu2"
-              anchorEl={anchorEl2}
-              open={open2}
-              onClose={handleClose2}
-              MenuListProps={{
-                "aria-labelledby": "basic-button1",
-              }}
-            >
-              <MenuItem onClick={handleClose2}>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#FAAFA8",
-                  }}
-                  onClick={() => handleClose3("#FAAFA8")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#F39F76",
-                  }}
-                  onClick={() => handleClose3("#F39F76")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#FFF8B8",
-                  }}
-                  onClick={() => handleClose3("#FFF8B8")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#E2F6D3",
-                  }}
-                  onClick={() => handleClose3("#E2F6D3")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#B4DDD3",
-                  }}
-                  onClick={() => handleClose3("#B4DDD3")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#D4E4ED",
-                  }}
-                  onClick={() => handleClose3("#D4E4ED")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#AECCDC",
-                  }}
-                  onClick={() => handleClose3("#AECCDC")}
-                ></div>
-                <div
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "#D3BFDB",
-                  }}
-                  onClick={() => handleClose3("#D3BFDB")}
-                ></div>
-              </MenuItem>
-            </Menu>
-
-            <Button id="basic-button3">
-              <EditIcon />
-            </Button>
-
-            {console.log(noteObj)}
-            {noteObj?.isArchived ? (
-              <Button id="basic-button5" onClick={() => unArchived(noteObj.id)}>
-                <UnarchiveIcon />
-              </Button>
-            ) : (
-              <Button id="basic-button4" onClick={() => onArchived(noteObj.id)}>
-                <ArchiveIcon />
-              </Button>
-            )}
-            {/* <Button id="basic-button4" onClick={() => onArchived(noteObj.id)}>
-            <ArchiveIcon />
-          </Button>
-          <Button id="basic-button5" onClick={() => unArchived(noteObj.id)}>
-            <UnarchiveIcon />
-          </Button> */}
-
-            <Button
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-            >
-              <MoreVertIcon />
-            </Button>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
-            >
-              {!noteObj?.isDeleted ? (
-                <MenuItem onClick={() => onDeleted(noteObj.id)}>
-                  Delete note
-                </MenuItem>
-              ) : (
-                <>
-                  <MenuItem onClick={() => deleteForever(noteObj.id)}>
-                    Delete Forever
-                  </MenuItem>
-                  <MenuItem onClick={() => unDeleted(noteObj.id)}>
-                    Undo Delete
-                  </MenuItem>
-                </>
-              )}
-              {/* <MenuItem onClick={() => onDeleted(noteObj.id)}>
-              Delete note
-            </MenuItem>
-            <MenuItem onClick={() => deleteForever(noteObj.id)}>
-              Delete Forever
-            </MenuItem>
-            <MenuItem onClick={() => unDeleted(noteObj.id)}>
-              Undo Delete
-            </MenuItem> */}
-            </Menu>
-          </CardActions>
-        </Card>
+          </Card>
+        </div>
       )}
-    </div>
+    </>
   );
 }

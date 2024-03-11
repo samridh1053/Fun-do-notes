@@ -4,16 +4,9 @@
     height: 150px;
     border: 1px solid black;
     border-radius: 10px;
-    /* position:"absolute"; */
-    /* top:"100px";
-    left:"420px"; */
-    /* background-color: violet; */
-    /* margin-left: 35%;
-    margin-right: 25%; */
     margin-top: 2%;
     padding-left: 300px;
-
-    
+    margin-bottom: 8vh;
 }
 .input {
     
@@ -53,22 +46,27 @@
     height: 7vh;
     width: 45vw;
     align-items: center;
-    margin-left: 38vw;
+    justify-content: center;
     margin-top: 5vh;
+    border-radius: 10px;
     border: solid 1px black;
+    margin-bottom: 10vh;
 
 }
 #tt{
     height: 7vh;
     width: 20vw;
+}
+.nt-text{
+    height: 5vh;
+    width: 30vw;
 
 }
 .nt-mainbox-iconbar{
     display: flex;
     flex-direction: row;
-    margin-left: 24vw;
+    margin-left: 5vw;
 }
-
 
 @media only screen and (max-width: 700px){
     .topper{
@@ -88,6 +86,17 @@
     .rod{
         right: 285px;
     
+    }
+    .nt-mainbox{
+        width: 340vw;
+    }
+    .nt-mainbox-iconbar{
+        margin-left: 5vh;
+    }
+    .nt-text{
+        /* background-color: aqua; */
+        margin-right: 36vh;
+        width: 100vh;
     }
 }
 

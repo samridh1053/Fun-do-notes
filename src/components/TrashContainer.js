@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import BasicCard from "./NoteCard";
 import { NavBar } from "./NavBar";
 import { getTrash } from "../Services/NoteServices";
+import "./TrashContainer.css";
 
 function TrashContainer() {
   const [noteList, setNoteList] = useState([]);
+  const [gridView, setGridView] = useState(true);
 
   useEffect(() => {
     const fetchDelete = async () => {
@@ -31,8 +33,45 @@ function TrashContainer() {
 
   return (
     <div>
-      <NavBar />
-      <div
+      <NavBar gridView={gridView} setGridView={setGridView} />
+      <div>
+        {gridView ? (
+          <div className="noteSet">
+            {noteList?.length ? (
+              noteList
+                .filter((ele) => !ele.isArchived)
+                .map((ele) => (
+                  <BasicCard
+                    key={ele.id}
+                    noteObj={ele}
+                    isGridView={gridView}
+                    onNoteDeleted={handleNoteDeleted}
+                  />
+                ))
+            ) : (
+              <span>Loading....</span>
+            )}
+          </div>
+        ) : (
+          <div className="noteSet2">
+            {noteList?.length ? (
+              noteList
+                .filter((ele) => !ele.isArchived)
+                .map((ele) => (
+                  <BasicCard
+                    key={ele.id}
+                    noteObj={ele}
+                    isGridView={gridView}
+                    onNoteDeleted={handleNoteDeleted}
+                  />
+                ))
+            ) : (
+              <span>Loading....</span>
+            )}
+          </div>
+        )}
+      </div>
+      {/* <div
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -42,20 +81,22 @@ function TrashContainer() {
           marginTop: "10px",
         }}
       >
-        {noteList?.length ? (
-          noteList
-            .filter((ele) => !ele.isArchived)
-            .map((ele) => (
-              <BasicCard
-                key={ele.id}
-                noteObj={ele}
-                onNoteDeleted={handleNoteDeleted}
-              />
-            ))
-        ) : (
-          <span>Loading....</span>
-        )}
-      </div>
+        <div className="noteSet">
+          {noteList?.length ? (
+            noteList
+              .filter((ele) => !ele.isArchived)
+              .map((ele) => (
+                <BasicCard
+                  key={ele.id}
+                  noteObj={ele}
+                  onNoteDeleted={handleNoteDeleted}
+                />
+              ))
+          ) : (
+            <span>Loading....</span>
+          )}
+        </div>
+      </div> */}
     </div>
   );
 }

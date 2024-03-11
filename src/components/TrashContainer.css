@@ -1,0 +1,20 @@
+.noteSet {
+    display: grid !important;
+    grid-template-columns: auto auto auto auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 2vh;
+}
+
+.noteSet2 {
+    width: 757px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
