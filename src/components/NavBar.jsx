@@ -19,7 +19,6 @@ import React from 'react'
 export const NavBar = ({gridView, setGridView}) => {
 
     const [isDrawerOpen, setDrawerOpen] = useState(false);
-  // const [gridView, setGridView] = useState(true);
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { activeModule } = useActiveModule();
   const navigate = useNavigate();
